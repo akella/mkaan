@@ -284,7 +284,7 @@ const HeaderClient = ({ pageName, rootClassname, isRootPage = false }) => {
         )}
 
         <div
-          className={`flex relative items-center gap-6 pointer-events-auto transition-all duration-300 ${isMenuOpen ? "max-md:text-dark z-40" : ""}`}
+          className={`flex relative items-center gap-6 pointer-events-auto transition-all duration-500 ${isMenuOpen ? "max-md:text-dark z-40" : ""}`}
         >
           <NavLink href="/">
             <svg
@@ -293,7 +293,6 @@ const HeaderClient = ({ pageName, rootClassname, isRootPage = false }) => {
               height="25"
               viewBox="0 0 38 25"
               fill="none"
-              className="transition-all duration-500"
             >
               <path
                 d="M24.0146 20.7471V20.7383C24.7122 21.8249 25.2352 22.5593 25.584 22.9453C25.9327 23.327 26.3269 23.6292 26.7627 23.8516V24.1543H22.3984V23.8516C22.8384 23.5706 23.0545 23.2981 23.0547 23.0381C23.0547 22.757 22.9139 22.4042 22.6357 21.9805L20.4844 18.5986H20.4238L19.4619 17.0498H19.4961L13.6953 7.95801L13.2754 7.29492L8.05566 15.5215H8.03906L7.58789 16.2598L7.08398 17.0547L7.08887 17.0498H7.10547L6.16016 18.5986H6.13379L4.39746 21.3467C3.89923 22.1522 3.65046 22.7481 3.65039 23.1299C3.65039 23.411 3.82087 23.6541 4.15723 23.8555V24.1582H0V23.8555C0.456682 23.6541 0.838748 23.3818 1.1377 23.042C1.43668 22.6979 1.9647 21.9345 2.72461 20.7471L12.2627 5.91016C11.8848 5.4654 11.4446 5.11268 10.9463 4.85254V4.55078H13.5791L24.0146 20.7471Z"
