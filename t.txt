@@ -1,0 +1,56 @@
+.photo img кроме первого — width: 0%, height: 0%
+.photo враппер — clip-path: inset(0% 0% 100% 0%)
+Первый .photo img — scale: 1.5
+.path — y: 100vh, z: 500rem
+
+
+Порядок анимации
+Фаза 1 — старт (t=0)
+
+.photo враппер: clip-path inset(0% 0% 100% 0%) → inset(0% 0% 0% 0%), ease: InOut, duration: 0.8s
+Первый img внутри .photo: scale 1.5 → 1, ease: InOut, duration: 0.8s
+Одновременно
+
+Delay 0.4s после фазы 1
+Фаза 2 — текст
+
+.h1: top 1.38rem → 0rem, ease: Out, duration: 1.2s, stagger grid from: edges, axis: x, amount: 1
+
+Фаза 3 — через 1.25s после фазы 2
+
+.item-inner: top 1.38rem → 0rem, ease: Out, duration: 1.2s, stagger grid from: edges, axis: x, amount: 1
+.dot: scale 0 → 1, ease: Out, duration: 1.2s
+Одновременно
+
+Фаза 3.5 — параллельно с фазой 2 (offset + durL)
+
+Все img внутри .photo кроме первого: width/height 0% → 100%, ease: Out, duration: 1.2s, stagger: 0.2s
+
+Delay 1s после фазы 3
+Фаза 4 — margin анимации (все одновременно)
+
+.t-item: margin-bottom 5rem → 0rem, ease: InOut, duration: 1.2s
+.b-item: margin-top 5rem → 0rem, ease: InOut, duration: 1.2s
+.c-left: margin-right 11.25rem → 0rem, ease: InOut, duration: 1.2s
+.c-right: margin-left 11.25rem → 0rem, ease: InOut, duration: 1.2s
+.m-left: margin-right 7.5rem → 0rem, ease: InOut, duration: 1.2s
+.m-right: margin-left 7.5rem → 0rem, ease: InOut, duration: 1.2s
+.d-left: margin-right 10rem → 0rem, ease: InOut, duration: 1.2s
+.d-right: margin-left 10rem → 0.27rem, ease: InOut, duration: 1.2s
+.photo враппер: width 14.16rem → 0rem, height 18.05rem → 0rem, ease: InOut, duration: 1.2s
+Всё одновременно
+
+
+Counter
+
+Элемент .counter (span): значение меняется от 0 до 100 (без символа %)
+Длительность = вся анимация целиком (от старта до конца фазы 4)
+ease: InOut
+
+
+После достижения 100 — delay 1.25s, затем:
+
+.sections-inner: scale 1 → 0, ease: InOut, duration: 0.6s → после завершения display: none
+.loader-label: top 0rem → 1.38rem, ease: InOut, duration: 0.4s
+.path: y 100vh → 0, z 500rem → 0, ease: Out, duration: 2s
+Всё одновременно

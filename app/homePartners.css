@@ -1,0 +1,26 @@
+.partner-overlay {
+  background: linear-gradient(
+      180deg,
+      rgba(20, 9, 14, 0.52) 0%,
+      rgba(20, 9, 14, 0) 50%,
+      rgba(20, 9, 14, 0.52) 100%
+    ),
+    rgba(20, 9, 14, 0.12);
+}
+
+@media (max-width: 1699px) {
+  .desktop-spacer {
+    display: none;
+  }
+}
+
+@media (min-width: 1700px) {
+  .desktop-spacer {
+    display: block;
+  }
+  .desktop-white-dec {
+    width: 450px !important;
+    right: 0 !important;
+    left: unset !important;
+  }
+}

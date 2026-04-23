@@ -1,0 +1,187 @@
+.text-230 {
+  font-family: var(--font-hedvig);
+  font-size: 230px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 230px */
+  letter-spacing: -9.2px;
+  text-transform: uppercase;
+  /* text-shadow: 2px -1px 1px rgba(255, 255, 255, 0.12); */
+}
+.text-big {
+  font-family: var(--font-helvetic);
+  font-size: 130px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 144px;
+  letter-spacing: -3.25px;
+}
+.text-160 {
+  font-family: var(--font-helvetic);
+  font-size: clamp(4rem, 1.8873rem + 9.0141vw, 10rem); /* 160px */
+  font-style: normal;
+  font-weight: 300;
+  line-height: 144px;
+  letter-spacing: -4px;
+}
+
+.title-h1 {
+  font-family: var(--font-helvetic);
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 72px; /* 90% */
+  letter-spacing: -2px;
+}
+.title-h2 {
+  font-family: var(--font-helvetic);
+  font-size: clamp(2.5rem, 2.0599rem + 1.8779vw, 3.75rem); /* 60px */
+  font-style: normal;
+  font-weight: 300;
+  line-height: 56px; /* 93.333% */
+  letter-spacing: -1.2px;
+}
+.title-h3 {
+  font-family: var(--font-helvetic);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 40px; /* 100% */
+  letter-spacing: -0.5px;
+}
+
+.text-100 {
+  font-family: var(--font-helvetic);
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 96px;
+  letter-spacing: -2.5px;
+}
+
+.text-40 {
+  font-family: var(--font-hedvig);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px; /* 100% */
+  letter-spacing: -0.4px;
+}
+
+.text-36 {
+  font-family: var(--font-helvetic);
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 36px; /* 100% */
+  letter-spacing: -0.45px;
+}
+.text-28 {
+  font-family: var(--font-helvetic);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px; /* 114.286% */
+  letter-spacing: -0.35px;
+}
+.text-24 {
+  font-family: var(--font-helvetic);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 28px; /* 116.667% */
+  letter-spacing: -0.3px;
+}
+.text-20 {
+  font-family: var(--font-helvetic);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px; /* 120% */
+  letter-spacing: -0.2px;
+  text-transform: capitalize;
+}
+.text-18 {
+  font-family: var(--font-helvetic);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.18px;
+}
+.text-14 {
+  font-family: var(--font-hedvig);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.07px;
+}
+.text-11 {
+  font-family: var(--font-helvetic);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px; /* 109.091% */
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+}
+
+.vertical-text-mode {
+  writing-mode: sideways-lr;
+}
+
+@media screen and (max-width: 1024px) {
+  .title-h2 {
+    line-height: 42px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title-h1 {
+    font-family: var(--font-helvetic);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px; /* 90% */
+    letter-spacing: -0.8px;
+  }
+  .text-28 {
+    font-family: var(--font-helvetic);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 28px;
+    letter-spacing: -0.3px;
+  }
+  .title-h2 {
+    font-family: var(--font-helvetic);
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px; /* 93.333% */
+    letter-spacing: -0.8px;
+  }
+  .title-h3 {
+    font-family: var(--font-helvetic);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 32px; /* 100% */
+    letter-spacing: -0.4px;
+  }
+  .text-40 {
+    font-family: var(--font-hedvig);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; /* 100% */
+    letter-spacing: -1px;
+  }
+  .text-36 {
+    font-family: var(--font-helvetic);
+    font-size: 28px;
+
+    line-height: 28px; /* 100% */
+    letter-spacing: -0.35px;
+  }
+}

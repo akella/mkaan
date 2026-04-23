@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parallax Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+  }
+
+  .section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #222;
+  }
+
+  .photo {
+    width: 600px;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: red;
+    position: relative;
+  }
+
+  .photo img {
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: -20%;
+    left: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="section">
+  <div class="photo">
+    <img src="https://picsum.photos/id/10/600/360" parallax="ctn-down" alt="">
+  </div>
+</div>
+
+<div class="section">
+  <div class="photo">
+    <img src="https://picsum.photos/id/20/600/360" parallax="ctn-down" alt="">
+  </div>
+</div>
+
+<div class="section">
+  <div class="photo">
+    <img src="https://picsum.photos/id/30/600/360" parallax="ctn-down" alt="">
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const lenis = new Lenis();
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  const breakPoint = 992;
+
+  gsap.utils.toArray('[parallax="ctn-down"]').forEach((ctn) => {
+    if (!ctn) return;
+    const isMobDisabled = ctn.getAttribute('mob') === 'false';
+    const isMobile = window.innerWidth < breakPoint;
+    if (!(isMobDisabled && isMobile)) {
+      gsap.fromTo(ctn, { yPercent: -10 },
+      {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: ctn,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>
