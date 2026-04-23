@@ -330,11 +330,14 @@ html {
 .title-char-mask {
   overflow: visible !important;
   overflow-y: clip !important;
+  padding-top: 2px;
 }
 
 /* .desc-line:first-child .desc-word:first-child::first-letter {
   font-size: 40px;
 } */
+
+
 
 .desc-word-first::first-letter {
   font-size: 40px !important;
