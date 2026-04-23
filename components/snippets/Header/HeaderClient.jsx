@@ -413,7 +413,7 @@ const HeaderClient = ({ pageName, rootClassname, isRootPage = false }) => {
             ></div>
             <div className="h-full flex justify-end items-start">
               <div
-                className={`flex flex-col justify-between max-md:justify-end max-w-[264px] max-md:max-w-full w-full h-[87.5%] max-md:h-[652px] menu-gradient p-6 max-md:p-4 pr-3.5 transform transition-all will-change-transform max-md:absolute max-md:top-[230px] max-md:left-0 ${
+                className={`text-textWhite flex flex-col justify-between max-md:justify-end max-w-[264px] max-md:max-w-full w-full h-[87.5%] max-md:h-[652px] menu-gradient p-6 max-md:p-4 pr-3.5 transform transition-all will-change-transform max-md:absolute max-md:top-[230px] max-md:left-0 ${
                   isMenuOpen
                     ? "translate-x-0 translate-y-0 opacity-100"
                     : "md:translate-x-[600%] max-md:translate-y-[calc(-100%_-_230px)] md:opacity-0"

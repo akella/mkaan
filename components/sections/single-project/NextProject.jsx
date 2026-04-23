@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useLenis } from "lenis/react";
 import NavLink from "@/components/NavLink";
 const ASSET_URL = process.env.NEXT_PUBLIC_STRAPI_ASSET_URL;
 
@@ -14,6 +15,7 @@ const getProjectHeroTitleTargetLeft = () =>
 
 const NextProject = ({ data }) => {
   const router = useRouter();
+  const lenis = useLenis();
   gsap.registerPlugin(ScrollTrigger, SplitText);
   const pinnedScreen = useRef(null);
   const nextHeroScreen = useRef(null);
@@ -157,6 +159,8 @@ const NextProject = ({ data }) => {
     });
 
     const nextBlockAnimation = () => {
+      lenis?.stop();
+
       if (hoverTimelineRef.current) {
         hoverTimelineRef.current.kill();
         hoverTimelineRef.current = null;
@@ -200,6 +204,7 @@ const NextProject = ({ data }) => {
       const nextBlockTl = gsap.timeline({
         onComplete: () => {
           router.push(`/projects/${data.Hero_section_project.Slug}`);
+          lenis?.start();
         },
       });
 
