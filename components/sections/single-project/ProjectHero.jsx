@@ -93,7 +93,7 @@ const ProjectHero = ({ data }) => {
       </div>
       <div
         id="hero-inner"
-        className="md:h-screen relative z-10 scroll-mt-12 md:mt-12"
+        className="md:h-screen relative z-10 scroll-mt-12"
       >
         <div className="flex items-start pl-[120px] max-md:pb-28 [@media(max-width:999px)]:pl-4 pr-36 [@media(max-width:999px)]:pr-4 [@media(max-width:999px)]:w-full max-md:pt-[88px] h-[60%]">
           <div className="basis-1/2 pl-6 border-l border-l-brown flex flex-col gap-12 text-14 [@media(max-width:999px)]:hidden">
