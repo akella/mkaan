@@ -13,6 +13,34 @@ const ASSET_URL = process.env.NEXT_PUBLIC_STRAPI_ASSET_URL;
 const getProjectHeroTitleTargetLeft = () =>
   window.innerWidth >= 1000 ? 144 : 16;
 
+const BLOCK_SCROLL_KEYS = new Set([
+  "ArrowUp",
+  "ArrowDown",
+  "PageUp",
+  "PageDown",
+  "Home",
+  "End",
+  " ",
+  "Spacebar",
+]);
+
+const blockScrollEvent = (event) => {
+  if (event.type === "keydown" && !BLOCK_SCROLL_KEYS.has(event.key)) return;
+  event.preventDefault();
+};
+
+const lockNativeScroll = () => {
+  window.addEventListener("wheel", blockScrollEvent, { passive: false });
+  window.addEventListener("touchmove", blockScrollEvent, { passive: false });
+  window.addEventListener("keydown", blockScrollEvent, { passive: false });
+};
+
+const unlockNativeScroll = () => {
+  window.removeEventListener("wheel", blockScrollEvent);
+  window.removeEventListener("touchmove", blockScrollEvent);
+  window.removeEventListener("keydown", blockScrollEvent);
+};
+
 const NextProject = ({ data }) => {
   const router = useRouter();
   const lenis = useLenis();
@@ -163,7 +191,7 @@ const NextProject = ({ data }) => {
 
     const nextBlockAnimation = () => {
       lenisRef.current?.stop();
-      document.body.style.overflow = "hidden";
+      lockNativeScroll();
 
       if (hoverTimelineRef.current) {
         hoverTimelineRef.current.kill();
@@ -208,7 +236,7 @@ const NextProject = ({ data }) => {
       const nextBlockTl = gsap.timeline({
         onComplete: () => {
           router.push(`/projects/${data.Hero_section_project.Slug}`);
-          document.body.style.overflow = "";
+          unlockNativeScroll();
           lenisRef.current?.start();
           nextBlockTlRef.current = null;
         },
@@ -284,7 +312,7 @@ const NextProject = ({ data }) => {
       if (nextBlockTlRef.current) {
         nextBlockTlRef.current.kill();
         nextBlockTlRef.current = null;
-        document.body.style.overflow = "";
+        unlockNativeScroll();
         lenisRef.current?.start();
       }
       if (scrollLabelSplit) {
