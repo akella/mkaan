@@ -315,7 +315,7 @@ const Contacts = ({ data }) => {
               </defs>
             </svg>
           </NavLink>
-          <div className="flex flex-col items-center gap-6 pb-12 max-md:pb-10 max-lg:mx-auto max-lg:order-1 lg:-ml-[77px]">
+          <div className="flex flex-col items-center gap-6 pb-12 max-md:pb-10 max-lg:mx-auto max-lg:order-1 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-0">
             <ul className="max-w-[385px] w-full flex gap-2 max-sm:gap-1 flex-wrap justify-center">
               <li className="flex items-center gap-2 max-sm:gap-1 text-14">
                 <NavLink

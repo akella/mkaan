@@ -635,19 +635,19 @@ const FooterClient = ({ variant = "default", className }) => {
       </div>
       <div
         ref={footerBottom}
-        className={`w-full h-[60px] max-md:h-[84px] mt-[-60px] footer-sticky-mobile bg-darkSecondary flex justify-between max-sm:flex-wrap items-center px-6 max-sm:p-4 footer-bottom max-md:gap-4 ${showBarMobile ? "footer-sticky-mobile-visible" : "footer-sticky-mobile-hidden"}`}
+        className={`w-full h-[60px] max-md:h-[84px] mt-[-60px] footer-sticky-mobile bg-darkSecondary flex md:grid md:grid-cols-3 justify-between max-sm:flex-wrap items-center px-6 max-sm:p-4 footer-bottom max-md:gap-4 ${showBarMobile ? "footer-sticky-mobile-visible" : "footer-sticky-mobile-hidden"}`}
       >
-        <p className="text-11 opacity-40 max-sm:order-0 max-md:max-w-1/2">
+        <p className="text-11 opacity-40 max-sm:order-0 max-md:max-w-1/2 md:justify-self-start">
           mkaan © <span>{new Date().getFullYear()}</span>, <br /> all right
           reserved
         </p>
         <NavLink
-          className="text-11 max-md:w-full opacity-40 transition-opacity duration-400 max-sm:-order-1 hover:opacity-100 [@media(min-width:1441px)]:absolute [@media(min-width:1441px)]:left-1/2 [@media(min-width:1441px)]:transform [@media(min-width:1441px)]:-translate-x-1/2"
+          className="text-11 max-md:w-full opacity-40 transition-opacity duration-400 max-sm:-order-1 hover:opacity-100 md:justify-self-center"
           href="#"
         >
           privacy policy
         </NavLink>
-        <div className="flex gap-3 md:items-end max-md:max-w-1/2">
+        <div className="flex gap-3 md:items-end max-md:max-w-1/2 md:justify-self-end">
           <div>
             <p className="text-11 opacity-40 text-right">experience by</p>
             <Link
