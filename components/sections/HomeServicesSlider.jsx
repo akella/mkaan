@@ -55,7 +55,7 @@ const HomeServicesSlider = ({ data = [], hideUiInitially = false }) => {
       >
         <div
           ref={containerRef}
-          className="absolute z-10 max-md:z-30 top-0 left-0 right-0 bottom-0 max-md:left-4 max-md:right-4 max-md:bottom-[3%] pointer-events-none"
+          className="absolute z-30 max-md:z-30 top-0 left-0 right-0 bottom-0 max-md:left-4 max-md:right-4 max-md:bottom-[3%] pointer-events-none"
           aria-hidden
         />
         <div className="absolute inset-0 partner-overlay pointer-events-none z-20 max-md:w-[calc(100%-32px)] max-md:h-[97%] mx-auto-mobile" />
