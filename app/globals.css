@@ -303,16 +303,28 @@ html {
 
 .title-char {
   padding-bottom: 8px;
-  display: inline-block;
+  
+  display: block !important;
+   /* border: 1px solid #fff; */
+   vertical-align: top;
 }
 
 .title-word {
-  display: inline-block;
+  display: inline-flex !important;
   white-space: nowrap;
+  /* overflow: visible !important; */
+  /* border: 1px solid green; */
+
 }
 
 .title-line {
   display: block;
+  overflow: visible !important;
+  margin-bottom:-8px;
+  /* border: 1px solid red; */
+}
+.title-line *{
+  /* line-height: 0.6 */
 }
 
 .title-char-mask {

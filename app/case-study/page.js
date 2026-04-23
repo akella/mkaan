@@ -35,7 +35,7 @@ export default async function CaseStudy() {
               : "/images/case-hero.jpg"
           }
           title={caseHero?.Title || "Flagship Case Studies"}
-          titleClassName={"!max-w-[445px]"}
+          titleClassName={"!max-w-[445px] max-md:w-full case-hero-title"}
           scrollText={true}
           subtitle={
             caseHero?.Description ||
