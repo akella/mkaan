@@ -117,26 +117,27 @@ const PageHero = ({
 
     scrollTriggerRef.current = tl.scrollTrigger;
 
-    if (needHeroAnimation && nextSection) {
-      gsap.set(nextSection, {
-        marginTop: "-88px",
-      });
-
-      mm.add("(min-width: 768px)", () => {
+    if (nextSection) {
+      mm.add("(max-width: 767px)", () => {
         gsap.set(nextSection, {
-          // marginTop: "-88px",
-          // clipPath: "polygon(10% 0, 90% 0, 90% 100%, 10% 100%)",
-          scaleX: 0.88,
-        });
-
-        tl.to(nextSection, {
-          // marginTop: "0px",
-          // clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
-          scaleX: 1,
-          ease: "none",
-          duration: 1,
+          marginTop: "-88px",
         });
       });
+
+      if (needHeroAnimation) {
+        mm.add("(min-width: 768px)", () => {
+          gsap.set(nextSection, {
+            marginTop: "-88px",
+            scaleX: 0.88,
+          });
+
+          tl.to(nextSection, {
+            scaleX: 1,
+            ease: "none",
+            duration: 1,
+          });
+        });
+      }
     }
     tl.fromTo(
       heroImg.current,
