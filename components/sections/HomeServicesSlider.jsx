@@ -64,10 +64,8 @@ const HomeServicesSlider = ({ data = [], hideUiInitially = false }) => {
             <div className="flex md:flex-col items-center gap-6 max-md:gap-2">
               <SliderNavButton
                 onClick={handlePrev}
-                className="border-brownDark max-md:-rotate-90"
+                className="text-textWhite border-brownDark md:hover:text-dark max-md:-rotate-90"
                 ariaLabel="Previous service"
-                showFill={false}
-                iconClassName=""
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -78,17 +76,15 @@ const HomeServicesSlider = ({ data = [], hideUiInitially = false }) => {
                 >
                   <path
                     d="M9.58464 15.8337V5.76803L4.75776 10.5949L4.16797 10.0003L10.0013 4.16699L15.8346 10.0003L15.2448 10.5949L10.418 5.76803V15.8337H9.58464Z"
-                    fill="#F7F7EB"
+                    fill="currentColor"
                   />
                 </svg>
               </SliderNavButton>
               <div className="w-1 h-1 bg-textWhite rounded-full max-md:hidden"></div>
               <SliderNavButton
                 onClick={handleNext}
-                className="border-brownDark max-md:-rotate-90"
+                className="text-textWhite border-brownDark md:hover:text-dark max-md:-rotate-90"
                 ariaLabel="Next service"
-                showFill={false}
-                iconClassName=""
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +95,7 @@ const HomeServicesSlider = ({ data = [], hideUiInitially = false }) => {
                 >
                   <path
                     d="M9.58464 4.16699V14.2326L4.75776 9.40574L4.16797 10.0003L10.0013 15.8337L15.8346 10.0003L15.2448 9.40574L10.418 14.2326V4.16699H9.58464Z"
-                    fill="#F7F7EB"
+                    fill="currentColor"
                   />
                 </svg>
               </SliderNavButton>
