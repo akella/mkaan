@@ -33,6 +33,7 @@ const NextProject = ({ data }) => {
   const transitionTitleSplitRef = useRef(null);
   const indicatorWrap = useRef(null);
   const nextBlockAnimationRef = useRef(null);
+  const nextBlockTlRef = useRef(null);
   const hasFiredRef = useRef(false);
 
   useEffect(() => {
@@ -209,8 +210,10 @@ const NextProject = ({ data }) => {
           router.push(`/projects/${data.Hero_section_project.Slug}`);
           document.body.style.overflow = "";
           lenisRef.current?.start();
+          nextBlockTlRef.current = null;
         },
       });
+      nextBlockTlRef.current = nextBlockTl;
 
       nextBlockTl.to(nextHeroScreen.current, {
         scaleX: 1,
@@ -278,6 +281,12 @@ const NextProject = ({ data }) => {
     );
 
     return () => {
+      if (nextBlockTlRef.current) {
+        nextBlockTlRef.current.kill();
+        nextBlockTlRef.current = null;
+        document.body.style.overflow = "";
+        lenisRef.current?.start();
+      }
       if (scrollLabelSplit) {
         scrollLabelSplit.revert();
       }
