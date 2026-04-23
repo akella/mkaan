@@ -16,6 +16,8 @@ const getProjectHeroTitleTargetLeft = () =>
 const NextProject = ({ data }) => {
   const router = useRouter();
   const lenis = useLenis();
+  const lenisRef = useRef(null);
+  lenisRef.current = lenis;
   gsap.registerPlugin(ScrollTrigger, SplitText);
   const pinnedScreen = useRef(null);
   const nextHeroScreen = useRef(null);
@@ -159,7 +161,8 @@ const NextProject = ({ data }) => {
     });
 
     const nextBlockAnimation = () => {
-      lenis?.stop();
+      lenisRef.current?.stop();
+      document.body.style.overflow = "hidden";
 
       if (hoverTimelineRef.current) {
         hoverTimelineRef.current.kill();
@@ -204,7 +207,8 @@ const NextProject = ({ data }) => {
       const nextBlockTl = gsap.timeline({
         onComplete: () => {
           router.push(`/projects/${data.Hero_section_project.Slug}`);
-          lenis?.start();
+          document.body.style.overflow = "";
+          lenisRef.current?.start();
         },
       });
 
