@@ -142,6 +142,7 @@ const CareerList = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalFormShow, setIsModalFormShow] = useState(false);
   const [selectedCareer, setSelectedCareer] = useState(null);
+  const [articleHeight, setArticleHeight] = useState(0);
   const careerList = useRef(null);
   const scrollProgress = useRef(null);
   const goToTopBtn = useRef(null);
@@ -167,6 +168,16 @@ const CareerList = ({ data }) => {
       lenis?.start();
     }
   }, [isModalOpen, lenis]);
+
+  useEffect(() => {
+    if (!isModalOpen || !articleContent.current) return;
+    const el = articleContent.current;
+    const update = () => setArticleHeight(el.offsetHeight);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isModalOpen, selectedCareer]);
 
   const scrollToTop = () => {
     if (modalLenisRef.current) {
@@ -223,39 +234,6 @@ const CareerList = ({ data }) => {
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
-
-    if (
-      isModalOpen &&
-      articleContent.current &&
-      formBlock.current &&
-      modalContainer.current
-    ) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: articleContent.current,
-          scroller: modalContainer.current,
-          start: isDesktop ? "100%+=22px bottom" : "100% bottom",
-          pin: true,
-          pinSpacing: true,
-          scrub: true,
-          // markers: true,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-        },
-      });
-
-      tl.fromTo(
-        formBlock.current,
-        {
-          y: "150%",
-          ease: "none",
-        },
-        {
-          y: "0%",
-          ease: "none",
-        },
-      );
-    }
 
     mm.add("(max-width: 767px)", () => {
       gsap.to(closeModalBtn.current, {
@@ -645,7 +623,12 @@ const CareerList = ({ data }) => {
           <div
             ref={articleContent}
             id="next-block"
-            className="relative md:w-[696px] bg-textWhite p-6 max-md:p-4 mt-[376px] md:ml-36 md:mb-6 text-dark max-md:overflow-x-clip"
+            className="sticky z-0 md:w-[696px] bg-textWhite p-6 max-md:p-4 mt-[376px] md:ml-36 md:mb-6 text-dark max-md:overflow-x-clip"
+            style={
+              articleHeight > 0
+                ? { top: `calc(100dvh - ${articleHeight}px)` }
+                : undefined
+            }
           >
             <div className="pb-12 max-md:pb-10 border-b border-beige">
               <div className="max-w-1/2 flex flex-col gap-[94px] max-md:gap-[72px] items-start">
@@ -746,10 +729,13 @@ const CareerList = ({ data }) => {
                 />
               </div>
             </div>
+          </div>
+          <div className="relative z-10 md:w-[696px] md:ml-36 max-md:mx-4 mt-6 max-md:mt-4 md:mb-6">
+            <div className="relative md:ml-auto md:-mr-[215px] max-w-[calc(480px)] max-md:max-w-full w-full">
             <div
               id="apply-form"
               ref={formBlock}
-              className={`absolute z-10 bottom-6 max-md:bottom-4 md:-right-[215px] max-md:left-4 transform md:-translate-x-1/2 p-6 max-md:p-4 bg-wine text-textWhite max-w-[calc(480px)] max-md:max-w-[calc(100%-32px)] w-full ${isSubmitted ? "pointer-events-none opacity-0" : "pointer-events-auto"} transition-all ease-out delay-0 duration-400`}
+              className={`relative p-6 max-md:p-4 bg-wine text-textWhite ${isSubmitted ? "pointer-events-none opacity-0" : "pointer-events-auto"} transition-all ease-out delay-0 duration-400`}
             >
               <div className="flex flex-col gap-[72px] max-md:gap-14 pb-12 max-md:pb-10 border-b border-brownDark">
                 <p className="text-14 text-grayDark">Apply for</p>
@@ -944,7 +930,7 @@ const CareerList = ({ data }) => {
               </form>
             </div>
             <div
-              className={`absolute bottom-6 max-md:bottom-4 max-md:left-1/2 max-md:-translate-x-1/2 md:-right-1/4 transform md:translate-x-1/6 p-6 max-md:p-4 max-w-[calc(480px+48px)] max-md:max-w-[calc(100%-32px)] w-full bg-wine opacity-0 ${isSubmitted ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} transition-opacity duration-400`}
+              className={`absolute inset-0 p-6 max-md:p-4 bg-wine ${isSubmitted ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} transition-opacity duration-400`}
             >
               <div className="flex flex-col md:gap-24 text-textWhite pb-6 border-b border-brownDark">
                 <p className="text-14 text-grayDark">Success</p>
@@ -976,6 +962,7 @@ const CareerList = ({ data }) => {
                   />
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
