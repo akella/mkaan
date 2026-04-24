@@ -42,9 +42,9 @@ const ProjectContent = ({ data, allProjects }) => {
       case 0:
         return "pb-6 max-md:pb-4 border-b border-b-brownDark col-span-full";
       case 1:
-        return "pt-6 max-md:pt-4 md:max-h-[744px]";
+        return "pt-6 max-md:pt-4 max-h-[744px]";
       case 2:
-        return "md:pl-6 pt-6 max-md:pt-4 md:max-h-[480px]";
+        return "md:pl-6 pt-6 max-md:pt-4 max-h-[744px] md:max-h-[480px]";
       default:
         return "";
     }
@@ -128,7 +128,7 @@ const ProjectContent = ({ data, allProjects }) => {
             {gallery_1.Media.map((mediaItem, index) => (
               <div
                 key={index}
-                className={`${setImgWrapperClass(index)} max-h-[744px]`}
+                className={setImgWrapperClass(index)}
               >
                 <Image
                   src={ASSET_URL + mediaItem.url || "/images/single-pr/1.jpg"}
