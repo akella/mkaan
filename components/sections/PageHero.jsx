@@ -171,7 +171,7 @@ const PageHero = ({
 
           {subtitle && (
             <p
-              className={`md:w-fit mx-auto-desktop text-center max-md:max-w-[250px] text-14 ${subtitleClassName}`}
+              className={`md:w-fit mx-auto-desktop text-center max-md:max-w-[250px] text-14 md:col-start-2 ${subtitleClassName}`}
             >
               {subtitle}
             </p>
