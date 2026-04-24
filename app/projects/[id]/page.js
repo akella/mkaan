@@ -32,7 +32,7 @@ export default async function SingleProject({ params }) {
   return (
     <>
       <HeaderServer pageName={["Own With Mkaan", "Partner With Mkaan"]} />
-      <main className="md:overflow-x-hidden">
+      <main className="md:overflow-x-clip">
         <ProjectHero data={project.Hero_section_project} />
         <ProjectContent data={project} allProjects={allProjects} />
       </main>

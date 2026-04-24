@@ -236,8 +236,6 @@ const NextProject = ({ data }) => {
       const nextBlockTl = gsap.timeline({
         onComplete: () => {
           router.push(`/projects/${data.Hero_section_project.Slug}`);
-          unlockNativeScroll();
-          lenisRef.current?.start();
           nextBlockTlRef.current = null;
         },
       });
@@ -312,9 +310,9 @@ const NextProject = ({ data }) => {
       if (nextBlockTlRef.current) {
         nextBlockTlRef.current.kill();
         nextBlockTlRef.current = null;
-        unlockNativeScroll();
-        lenisRef.current?.start();
       }
+      unlockNativeScroll();
+      lenisRef.current?.start();
       if (scrollLabelSplit) {
         scrollLabelSplit.revert();
       }
