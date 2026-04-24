@@ -16,3 +16,18 @@
     width: calc(100% - 16px);
   }
 }
+
+@media (max-width: 767px) {
+  .form-mode-active {
+    position: fixed !important;
+    top: 180px !important;
+    left: 16px !important;
+    right: 16px !important;
+    bottom: auto !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
