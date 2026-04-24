@@ -140,9 +140,9 @@ const CaseContent = ({ data, allCases }) => {
       case 0:
         return "pb-6 max-md:pb-4 border-b border-b-brownDark";
       case 1:
-        return "pt-6 max-md:pt-4 md:max-h-[744px]";
+        return "pt-6 max-md:pt-4";
       case 2:
-        return "md:pl-6 pt-6 max-md:pt-4 md:max-h-[480px]";
+        return "md:pl-6 pt-6 max-md:pt-4";
       default:
         return "";
     }
@@ -152,9 +152,9 @@ const CaseContent = ({ data, allCases }) => {
 
     switch (normalizedIndex) {
       case 0:
-        return "md:col-span-full md:max-h-[744px]";
+        return "md:col-span-full";
       case 1:
-        return "pt-6 max-md:pt-4 md:max-h-[480px]";
+        return "pt-6 max-md:pt-4";
       case 2:
         return "pt-6 max-md:pt-4 md:h-[744px]";
       default:
@@ -582,7 +582,7 @@ const CaseContent = ({ data, allCases }) => {
                   width={1392}
                   height={744}
                   alt="project image"
-                  className="w-full object-cover max-h-[744px]"
+                  className="w-full object-cover"
                   quality={100}
                 />
               </div>

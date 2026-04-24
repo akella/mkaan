@@ -42,9 +42,9 @@ const ProjectContent = ({ data, allProjects }) => {
       case 0:
         return "pb-6 max-md:pb-4 border-b border-b-brownDark col-span-full";
       case 1:
-        return "pt-6 max-md:pt-4 max-h-[744px]";
+        return "pt-6 max-md:pt-4";
       case 2:
-        return "md:pl-6 pt-6 max-md:pt-4 max-h-[744px] md:max-h-[480px]";
+        return "md:pl-6 pt-6 max-md:pt-4";
       default:
         return "";
     }
@@ -56,7 +56,7 @@ const ProjectContent = ({ data, allProjects }) => {
       case 0:
         return "col-span-full";
       case 1:
-        return "pt-6 max-md:pt-4 md:max-h-[744px]";
+        return "pt-6 max-md:pt-4";
       case 2:
         return "pt-6 max-md:pt-4";
       default:
@@ -70,9 +70,9 @@ const ProjectContent = ({ data, allProjects }) => {
       case 0:
         return " col-span-full";
       case 1:
-        return "pt-6 max-md:pt-4 md:max-h-[744px]";
+        return "pt-6 max-md:pt-4";
       case 2:
-        return "md:pl-6 pt-6 max-md:pt-4 md:max-h-[480px]";
+        return "md:pl-6 pt-6 max-md:pt-4";
       default:
         return "";
     }
@@ -158,7 +158,7 @@ const ProjectContent = ({ data, allProjects }) => {
               {challenge.Media.map((mediaItem, index) => (
                 <div
                   key={index}
-                  className={`${setSecondImgWrapperClass(index)} max-h-[744px]`}
+                  className={setSecondImgWrapperClass(index)}
                 >
                   <Image
                     src={ASSET_URL + mediaItem.url || "/images/single-pr/4.jpg"}
