@@ -17,17 +17,21 @@
   }
 }
 
-@media (max-width: 767px) {
-  .form-mode-active {
-    position: fixed !important;
-    top: 180px !important;
-    left: 16px !important;
-    right: 16px !important;
-    bottom: auto !important;
-    width: auto !important;
-    height: auto !important;
-    max-width: none !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
+.career-modal-scroll {
+  color-scheme: dark;
+  scrollbar-color: rgba(247, 247, 235, 0.25) transparent;
+  scrollbar-width: thin;
+}
+.career-modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.career-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.career-modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(247, 247, 235, 0.25);
+  border-radius: 4px;
+}
+.career-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(247, 247, 235, 0.45);
 }

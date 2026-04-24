@@ -168,113 +168,6 @@ const CareerList = ({ data }) => {
     }
   }, [isModalOpen, lenis]);
 
-  useEffect(() => {
-    if (
-      !isModalOpen ||
-      !modalContainer.current ||
-      !formBlock.current ||
-      !articleContent.current
-    ) {
-      return;
-    }
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    if (!isMobile) return;
-
-    const scroller = modalContainer.current;
-    const form = formBlock.current;
-    let virtualScroll = 0;
-    let touchStartY = null;
-    let isFormMode = false;
-    let revealDistance = 0;
-    let startTranslateY = 0;
-
-    gsap.set(form, { y: 0, yPercent: 100 });
-
-    const updateFormPosition = () => {
-      const translate = startTranslateY - virtualScroll;
-      gsap.set(form, { y: translate, yPercent: 0 });
-    };
-
-    const enterFormMode = () => {
-      if (isFormMode) return;
-      isFormMode = true;
-      virtualScroll = 0;
-      form.classList.add("form-mode-active");
-      scroller.style.overflow = "hidden";
-      const formHeight = form.offsetHeight;
-      startTranslateY = window.innerHeight - 180;
-      revealDistance = Math.max(startTranslateY, formHeight + 16);
-      gsap.set(form, { y: startTranslateY, yPercent: 0 });
-    };
-
-    const exitFormMode = () => {
-      if (!isFormMode) return;
-      isFormMode = false;
-      virtualScroll = 0;
-      form.classList.remove("form-mode-active");
-      scroller.style.overflow = "";
-      gsap.set(form, { y: 0, yPercent: 100 });
-    };
-
-    const handleDelta = (delta) => {
-      if (!isFormMode) return;
-      if (delta > 0) {
-        if (virtualScroll < revealDistance) {
-          virtualScroll = Math.min(revealDistance, virtualScroll + delta);
-          updateFormPosition();
-        }
-      } else if (delta < 0) {
-        if (virtualScroll > 0) {
-          virtualScroll = Math.max(0, virtualScroll + delta);
-          updateFormPosition();
-          if (virtualScroll === 0) exitFormMode();
-        }
-      }
-    };
-
-    const handleScrollerScroll = () => {
-      if (isFormMode) return;
-      const { scrollTop, scrollHeight, clientHeight } = scroller;
-      if (scrollTop + clientHeight >= scrollHeight - 2) enterFormMode();
-    };
-
-    const handleWheel = (event) => {
-      if (!isFormMode) return;
-      event.preventDefault();
-      handleDelta(event.deltaY);
-    };
-
-    const handleTouchStart = (event) => {
-      touchStartY = event.touches[0]?.clientY ?? null;
-    };
-
-    const handleTouchMove = (event) => {
-      if (!isFormMode || touchStartY === null) return;
-      event.preventDefault();
-      const currentY = event.touches[0]?.clientY ?? touchStartY;
-      const delta = touchStartY - currentY;
-      touchStartY = currentY;
-      handleDelta(delta);
-    };
-
-    scroller.addEventListener("scroll", handleScrollerScroll, {
-      passive: true,
-    });
-    scroller.addEventListener("wheel", handleWheel, { passive: false });
-    scroller.addEventListener("touchstart", handleTouchStart, { passive: true });
-    scroller.addEventListener("touchmove", handleTouchMove, { passive: false });
-
-    return () => {
-      scroller.removeEventListener("scroll", handleScrollerScroll);
-      scroller.removeEventListener("wheel", handleWheel);
-      scroller.removeEventListener("touchstart", handleTouchStart);
-      scroller.removeEventListener("touchmove", handleTouchMove);
-      form.classList.remove("form-mode-active");
-      scroller.style.overflow = "";
-      gsap.set(form, { clearProps: "transform,y,yPercent" });
-    };
-  }, [isModalOpen]);
-
   const scrollToTop = () => {
     if (modalLenisRef.current) {
       modalLenisRef.current.scrollTo(0);
@@ -301,17 +194,11 @@ const CareerList = ({ data }) => {
       return;
     }
 
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    if (isMobile) {
-      requestAnimationFrame(() => ScrollTrigger.refresh());
-      return;
-    }
-
     const modalLenis = new Lenis({
       wrapper: modalContainer.current,
       content: articleContent.current,
       smoothWheel: true,
-      smoothTouch: false,
+      smoothTouch: true,
       lerp: 0.1,
     });
 
@@ -341,14 +228,13 @@ const CareerList = ({ data }) => {
       isModalOpen &&
       articleContent.current &&
       formBlock.current &&
-      modalContainer.current &&
-      isDesktop
+      modalContainer.current
     ) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: articleContent.current,
           scroller: modalContainer.current,
-          start: "100%+=22px bottom",
+          start: isDesktop ? "100%+=22px bottom" : "100% bottom",
           pin: true,
           pinSpacing: true,
           scrub: true,
@@ -702,7 +588,7 @@ const CareerList = ({ data }) => {
         <div
           ref={modalContainer}
           data-lenis-prevent
-          className="fixed inset-0 z-40 bg-menuOverlay overflow-auto overflow-x-clip"
+          className="fixed inset-0 z-40 bg-menuOverlay overflow-auto overflow-x-clip career-modal-scroll"
           onClick={handleModalClick}
         >
           <div className="fixed h-[95%] max-md:h-[100px] w-[121px] max-lg:w-[90px] left-0 top-6 z-10 pl-6 max-md:pl-4 flex flex-col justify-between items-start">
@@ -759,7 +645,7 @@ const CareerList = ({ data }) => {
           <div
             ref={articleContent}
             id="next-block"
-            className="relative md:w-[696px] bg-textWhite p-6 max-md:p-4 mt-[376px] md:ml-36 md:mb-6 text-dark max-md:overflow-clip md:overflow-x-clip"
+            className="relative md:w-[696px] bg-textWhite p-6 max-md:p-4 mt-[376px] md:ml-36 md:mb-6 text-dark max-md:overflow-x-clip"
           >
             <div className="pb-12 max-md:pb-10 border-b border-beige">
               <div className="max-w-1/2 flex flex-col gap-[94px] max-md:gap-[72px] items-start">
