@@ -76,6 +76,7 @@ const Contacts = ({ data }) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const [subMenuMaxHeight, setSubMenuMaxHeight] = useState(0);
   const [showBarMobile, setShowBarMobile] = useState(false);
+  const [contactImgLoaded, setContactImgLoaded] = useState(false);
   const subMenuContentRef = useRef(null);
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -265,7 +266,9 @@ const Contacts = ({ data }) => {
         src={"/images/contact.jpg"}
         fill
         alt="Contact"
-        className="object-cover "
+        className="object-cover transition-opacity duration-500 ease-in-out"
+        style={{ opacity: contactImgLoaded ? 1 : 0 }}
+        onLoad={() => setContactImgLoaded(true)}
         ref={contactImgRef}
         quality={100}
       />

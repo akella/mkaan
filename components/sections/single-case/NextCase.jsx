@@ -6,13 +6,45 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useLenis } from "lenis/react";
 import NavLink from "@/components/NavLink";
 const ASSET_URL = process.env.NEXT_PUBLIC_STRAPI_ASSET_URL;
 
 const getCaseHeroTitleTargetLeft = () => (window.innerWidth >= 1000 ? 144 : 16);
 
+const BLOCK_SCROLL_KEYS = new Set([
+  "ArrowUp",
+  "ArrowDown",
+  "PageUp",
+  "PageDown",
+  "Home",
+  "End",
+  " ",
+  "Spacebar",
+]);
+
+const blockScrollEvent = (event) => {
+  if (event.type === "keydown" && !BLOCK_SCROLL_KEYS.has(event.key)) return;
+  event.preventDefault();
+};
+
+const lockNativeScroll = () => {
+  window.addEventListener("wheel", blockScrollEvent, { passive: false });
+  window.addEventListener("touchmove", blockScrollEvent, { passive: false });
+  window.addEventListener("keydown", blockScrollEvent, { passive: false });
+};
+
+const unlockNativeScroll = () => {
+  window.removeEventListener("wheel", blockScrollEvent);
+  window.removeEventListener("touchmove", blockScrollEvent);
+  window.removeEventListener("keydown", blockScrollEvent);
+};
+
 const NextCase = ({ data }) => {
   const router = useRouter();
+  const lenis = useLenis();
+  const lenisRef = useRef(null);
+  lenisRef.current = lenis;
   gsap.registerPlugin(ScrollTrigger, SplitText);
   const pinnedScreen = useRef(null);
   const nextHeroScreen = useRef(null);
@@ -27,6 +59,9 @@ const NextCase = ({ data }) => {
   const hoverTimelineRef = useRef(null);
   const transitionTitleSplitRef = useRef(null);
   const indicatorWrap = useRef(null);
+  const nextBlockAnimationRef = useRef(null);
+  const nextBlockTlRef = useRef(null);
+  const hasFiredRef = useRef(false);
 
   useEffect(() => {
     const titleText = data?.Hero_section_case?.Title;
@@ -107,6 +142,51 @@ const NextCase = ({ data }) => {
     };
   }, [data?.Hero_section_case?.Title]);
 
+  useEffect(() => {
+    let refreshTimeout = null;
+    let stopResizeObserver = false;
+
+    const debouncedRefresh = () => {
+      if (stopResizeObserver) return;
+      if (refreshTimeout) clearTimeout(refreshTimeout);
+      refreshTimeout = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200);
+    };
+
+    const handleLoad = () => ScrollTrigger.refresh();
+    if (document.readyState !== "complete") {
+      window.addEventListener("load", handleLoad);
+    } else {
+      ScrollTrigger.refresh();
+    }
+
+    const resizeObserver = new ResizeObserver(debouncedRefresh);
+    resizeObserver.observe(document.body);
+
+    // Stop resize-driven refreshes once user is close to pin engagement,
+    // so a late layout shift doesn't move the pin's start mid-scroll.
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          stopResizeObserver = true;
+          if (refreshTimeout) clearTimeout(refreshTimeout);
+          ScrollTrigger.refresh();
+          intersectionObserver.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px 1200px 0px" },
+    );
+    if (pinnedScreen.current) intersectionObserver.observe(pinnedScreen.current);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      if (refreshTimeout) clearTimeout(refreshTimeout);
+    };
+  }, []);
+
   const handleLinkMouseEnter = () => {
     if (hoverTimelineRef.current) {
       hoverTimelineRef.current.play(0);
@@ -154,6 +234,9 @@ const NextCase = ({ data }) => {
     });
 
     const nextBlockAnimation = () => {
+      lenisRef.current?.stop();
+      lockNativeScroll();
+
       if (hoverTimelineRef.current) {
         hoverTimelineRef.current.kill();
         hoverTimelineRef.current = null;
@@ -197,8 +280,10 @@ const NextCase = ({ data }) => {
       const nextBlockTl = gsap.timeline({
         onComplete: () => {
           router.push(`/case-study/${data.Hero_section_case.Slug}`);
+          nextBlockTlRef.current = null;
         },
       });
+      nextBlockTlRef.current = nextBlockTl;
 
       nextBlockTl.to(nextHeroScreen.current, {
         scaleX: 1,
@@ -220,6 +305,8 @@ const NextCase = ({ data }) => {
         );
       }
     };
+
+    nextBlockAnimationRef.current = nextBlockAnimation;
     // gsap.to(pinnedScreen.current, {
     //   onComplete: () => nextBlockAnimation(),
     //   scrollTrigger: {
@@ -238,7 +325,6 @@ const NextCase = ({ data }) => {
     // });
 
     const tl = gsap.timeline({
-      // onComplete: () => nextBlockAnimation(),
       scrollTrigger: {
         trigger: pinnedScreen.current,
         start: "top top",
@@ -247,11 +333,17 @@ const NextCase = ({ data }) => {
         pin: true,
         // markers: true,
         pinSpacing: false,
-        pinSpacer: false,
-        anticipatePin: 1,
         refreshPriority: 1,
         invalidateOnRefresh: true,
-        onLeave: () => nextBlockAnimation(),
+        onUpdate: (self) => {
+          if (!hasFiredRef.current && self.progress >= 0.98) {
+            hasFiredRef.current = true;
+            nextBlockAnimation();
+          }
+        },
+        onLeaveBack: () => {
+          hasFiredRef.current = false;
+        },
       },
     });
     tl.to(scrollLabelSplit?.chars || [], {
@@ -273,6 +365,12 @@ const NextCase = ({ data }) => {
     );
 
     return () => {
+      if (nextBlockTlRef.current) {
+        nextBlockTlRef.current.kill();
+        nextBlockTlRef.current = null;
+      }
+      unlockNativeScroll();
+      lenisRef.current?.start();
       if (scrollLabelSplit) {
         scrollLabelSplit.revert();
       }
@@ -295,6 +393,14 @@ const NextCase = ({ data }) => {
               className="flex justify-center title-h1 text-center mt-6 relative z-10"
               onMouseEnter={handleLinkMouseEnter}
               onMouseLeave={handleLinkMouseLeave}
+              onClick={(e) => {
+                e.preventDefault();
+                if (hasFiredRef.current) return;
+                hasFiredRef.current = true;
+                if (nextBlockAnimationRef.current) {
+                  nextBlockAnimationRef.current();
+                }
+              }}
             >
               <span ref={nextPrTitleRef}>{data.Hero_section_case.Title}</span>
             </NavLink>

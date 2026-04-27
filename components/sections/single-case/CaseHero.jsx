@@ -474,7 +474,7 @@ const CaseHero = ({ data, features }) => {
         }
         alt="project image"
         fill
-        className="object-cover"
+        className="object-cover object-top !h-[200vh]"
         quality={100}
       />
       <div className="absolute inset-0 bg-[linear-gradient(0deg,_rgba(20,_9,_14,_0.75)_0%,_rgba(20,_9,_14,_0.28)_100%)]"></div>
