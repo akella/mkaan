@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import { Link, useTransitionRouter } from "next-view-transitions";
+import { usePathname } from "next/navigation";
 import { preloadImage } from "@/lib/preloadImage";
 import { useHeroImages } from "./providers/HeroPreloadProvider";
 import { fadeOut } from "@/lib/transitionFade";
@@ -17,6 +18,7 @@ export default function NavLink({
 }) {
   const heroImages = useHeroImages();
   const router = useTransitionRouter();
+  const pathname = usePathname();
 
   const getImageUrl = useCallback(() => {
     if (preload) return preload;
@@ -36,6 +38,8 @@ export default function NavLink({
     if (event.defaultPrevented || event.metaKey || event.ctrlKey) return;
 
     event.preventDefault();
+
+    if (href && pathname === href) return;
 
     const url = getImageUrl();
     if (url) preloadImage(url);
