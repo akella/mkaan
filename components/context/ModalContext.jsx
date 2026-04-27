@@ -1173,6 +1173,7 @@ export const ModalProvider = ({ children, data }) => {
                   text={"back to home"}
                   tag="a"
                   href="/"
+                  needTransition={false}
                   onClick={closeModal}
                   className={"flex w-fit ml-auto"}
                 />
