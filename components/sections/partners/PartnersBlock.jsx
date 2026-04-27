@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -193,6 +193,7 @@ const PartnersBlock = ({ data = partnersMockData, partnersData }) => {
   const partnersTrack = useRef(null);
   const sidebarRef = useRef(null);
   const scrollTriggerRef = useRef(null);
+  const [bgImageLoaded, setBgImageLoaded] = useState(false);
 
   const { openModal } = useModal();
 
@@ -305,7 +306,9 @@ const PartnersBlock = ({ data = partnersMockData, partnersData }) => {
           <Image
             src={"/images/partners/1.jpg"}
             fill
-            className="object-cover"
+            className="object-cover transition-opacity duration-500 ease-in-out"
+            style={{ opacity: bgImageLoaded ? 1 : 0 }}
+            onLoad={() => setBgImageLoaded(true)}
             alt="partners background image"
             quality={100}
           />
@@ -313,8 +316,8 @@ const PartnersBlock = ({ data = partnersMockData, partnersData }) => {
           <div className="absolute inset-0 bg-bgOverlay"></div>
         </div>
         <PartnersGroup data={partnersList} />
-        <div className="flex items-end justify-center md:w-[456px] h-full bg-dark max-md:py-24 max-md:px-4">
-          <div className="md:mb-44 max-md:w-full">
+        <div className="flex items-center justify-center md:w-[456px] h-full bg-dark max-md:py-24 max-md:px-4">
+          <div className="max-md:w-full">
             <div className="relative md:max-w-[264px] md:h-[328px] w-full p-6 border border-brownDark max-md:h-[427px] overflow-clip">
               <Image
                 src={"/images/about-small.jpg"}

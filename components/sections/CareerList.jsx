@@ -520,7 +520,7 @@ const CareerList = ({ data }) => {
               className="career-card relative pr-6 pt-6 max-md:pr-4 max-md:pt-4"
             >
               <div
-                className={`flex gap-[59px] max-lg:gap-4 max-sm:gap-[27px] p-6 max-md:p-4 ${career.urgent ? "bg-wine" : "bg-textWhite"}  h-[552px] max-md:h-[440px]`}
+                className={`flex gap-[59px] max-lg:gap-4 max-sm:gap-[27px] p-6 max-md:p-4 ${career.urgent ? "bg-wine" : "bg-textWhite"} aspect-[4/5]`}
               >
                 <div
                   className={`flex flex-col gap-40 max-md:gap-28 text-14 ${career.urgent ? "text-grayDark" : "text-dark opacity-40"} `}
