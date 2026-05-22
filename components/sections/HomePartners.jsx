@@ -103,69 +103,38 @@ const HomePartners = ({ bgImg, data }) => {
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const pinTrigger = ScrollTrigger.create({
-      trigger: partnersBlock.current,
-      start: "bottom 90%",
-      end: "+=500",
-      pin: true,
-      pinSpacing: false,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
+    const mm = gsap.matchMedia();
+
+    // The pin freezes this whole section while the next section (HomeServices)
+    // slides up over it — pinSpacing:false = overlap, no spacer is added.
+    mm.add("(min-width: 768px)", () => {
+      // The beige panel is `absolute bottom-0` and 384px tall, so its top edge
+      // reaches the top of the viewport when the section bottom is 384px from
+      // the top. Starting the pin at "bottom top+=480" (384px panel + ~96px to
+      // clear the fixed header) lets the panel scroll a full viewport height —
+      // fully readable — before the pin engages and HomeServices slides over.
+      const pinTrigger = ScrollTrigger.create({
+        trigger: partnersBlock.current,
+        start: "bottom top+=480",
+        end: "+=500",
+        pin: true,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      });
+      return () => pinTrigger.kill();
     });
 
-    // mm.add("(min-width: 768px) and (max-height: 950px)", () => {
-    //   const tl2 = gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: partnersInner.current,
-    //       start: "top 30%",
-    //       end: "bottom bottom",
-    //       scrub: 2,
-
-    //       // markers: true,
-    //     },
-    //   });
-    //   tl2.to(partnersInner.current, {
-    //     bottom: "0%",
-    //     ease: "power3.inOut",
-    //     duration: 2,
-    //   });
-    // });
-    // mm.add("(min-height: 950px) and (min-width: 767px)", () => {
-    //   const tl2 = gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: partnersInner.current,
-    //       start: "top center",
-    //       end: "bottom bottom",
-    //       scrub: 2,
-
-    //       // markers: true,
-    //     },
-    //   });
-    //   tl2.to(partnersInner.current, {
-    //     bottom: "0%",
-    //     ease: "power3.inOut",
-    //     // duration: 1,
-    //   });
-    // });
-
-    // mm.add("(max-width: 767px)", () => {
-    //   const tl2 = gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: partnersBlock.current,
-    //       start: "center center",
-    //       end: "bottom bottom",
-    //       scrub: true,
-
-    //       // markers: true,
-    //     },
-    //   });
-
-    //   tl2.to([partnersInner.current, partnersInnerMob.current], {
-    //     bottom: "0%",
-    //     ease: "power3.inOut",
-    //     // duration: 1,
-    //   });
-    // });
+    mm.add("(max-width: 767px)", () => {
+      const pinTrigger = ScrollTrigger.create({
+        trigger: partnersBlock.current,
+        start: "bottom 90%",
+        end: "+=500",
+        pin: true,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      });
+      return () => pinTrigger.kill();
+    });
 
     const tl3 = gsap.timeline({
       scrollTrigger: {
@@ -187,7 +156,7 @@ const HomePartners = ({ bgImg, data }) => {
 
     return () => {
       tl3.kill();
-      pinTrigger.kill();
+      mm.revert();
     };
   }, []);
   return (

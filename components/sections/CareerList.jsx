@@ -623,10 +623,10 @@ const CareerList = ({ data }) => {
           <div
             ref={articleContent}
             id="next-block"
-            className="sticky z-0 md:w-[696px] bg-textWhite p-6 max-md:p-4 mt-[376px] md:ml-36 md:mb-6 text-dark max-md:overflow-x-clip"
+            className="sticky z-0 md:w-[696px] bg-textWhite p-6 max-md:p-4 mt-6 md:ml-36 md:mb-6 text-dark max-md:overflow-x-clip"
             style={
               articleHeight > 0
-                ? { top: `calc(100dvh - ${articleHeight}px)` }
+                ? { top: `calc(95% + 1.5rem - ${articleHeight}px)` }
                 : undefined
             }
           >

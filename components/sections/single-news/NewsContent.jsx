@@ -235,7 +235,7 @@ const NewsContent = ({ data }) => {
       <div
         id="next-block"
         ref={articleContent}
-        className="w-full ml-[144px] max-lg:ml-[110px] max-md:ml-0 md:pt-[63vh] text-dark"
+        className="w-full ml-[144px] max-lg:ml-[110px] max-md:ml-0 md:pt-[96px] text-dark"
       >
         <div
           ref={articleBody}

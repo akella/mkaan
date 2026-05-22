@@ -158,7 +158,7 @@ const PageHero = ({
       <div className="md:relative md:h-full md:justify-end z-10 flex flex-col gap-[202px] max-md:gap-[194px] max-w-[87%] px-4 w-full">
         <AnimatedTitle
           tag="h1"
-          className={`title-h1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 !tracking-[-2.5px] max-w-[800px] max-md:max-w-[300px] text-center max-md:!text-[52px] max-md:!leading-[44px] max-md:!tracking-[-1.3px] ${titleClassName}`}
+          className={`title-h1 absolute top-1/2 inset-x-0 mx-auto -translate-y-1/2 !tracking-[-2.5px] max-w-[1000px] max-md:max-w-[300px] text-center text-balance max-md:!text-[52px] max-md:!leading-[44px] max-md:!tracking-[-1.3px] ${titleClassName}`}
         >
           {title}
         </AnimatedTitle>

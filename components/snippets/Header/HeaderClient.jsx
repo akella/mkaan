@@ -340,12 +340,13 @@ const HeaderClient = ({ pageName, rootClassname, isRootPage = false }) => {
               isMenuOpen ? "text-dark " : ""
             }`}
           >
-            <div>
+            {/* Language switcher — commented out until translations are ready */}
+            {/* <div>
               <p className="text-14">العربية</p>
             </div>
             <div
               className={`h-3 w-px  ${isMenuOpen ? "bg-beige" : "bg-brownDark"}`}
-            ></div>
+            ></div> */}
             <div>
               <button
                 onClick={handleToggleMenu}

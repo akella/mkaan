@@ -307,6 +307,7 @@ html {
   display: block !important;
    /* border: 1px solid #fff; */
    vertical-align: top;
+   padding-top: 3px;
 }
 
 .title-word {
