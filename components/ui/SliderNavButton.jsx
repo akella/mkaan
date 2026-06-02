@@ -61,7 +61,7 @@ const SliderNavButton = ({
       onPointerDown={handlePointerDown}
       onClick={handleClick}
       className={cn(
-        "relative group p-2.5 border rounded-full md:transition-all md:duration-500 md:ease-[var(--ease-in-out)]",
+        "relative group p-2.5 border rounded-full md:transition-all md:duration-400 md:ease-[var(--ease-in-out)]",
         disabled ? disabledClassName : enabledClassName,
         className,
       )}
@@ -74,10 +74,9 @@ const SliderNavButton = ({
         <span
           aria-hidden="true"
           className={cn(
-            "absolute inset-0 rounded-full transform scale-0 md:transition-all md:duration-500 md:ease-[var(--ease-in-out)]",
+            "absolute inset-0 rounded-full transform scale-0 md:transition-all md:duration-400 md:ease-[var(--ease-in-out)]",
             fillClassName,
-            !disabled &&
-              "md:group-hover:scale-100 md:group-hover:duration-400 md:group-hover:ease-[var(--ease-in)]",
+            !disabled && "md:group-hover:scale-100",
           )}
         />
       ) : null}

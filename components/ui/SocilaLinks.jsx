@@ -172,12 +172,12 @@ const SocialLinks = ({ variant, className, needCopyBtn, isShareLinks = false, sh
           <li key={link.id}>
             <Link
               target="_blank"
-              className={`relative group flex p-2.5 border ${variant === "dark" ? "border-beige" : "border-brownDark"}  rounded-full md:transition-all md:duration-500 md:ease-[var(--ease-in-out)]`}
+              className={`relative group flex p-2.5 border ${variant === "dark" ? "border-beige" : "border-brownDark"}  rounded-full md:transition-all md:duration-400 md:ease-[var(--ease-in-out)]`}
               href={href}
               onClick={isShareLinks && isInstagram ? handleInstagramShare : undefined}
             >
               <div
-                className={`absolute inset-0 rounded-full ${variant === "dark" ? "bg-dark" : "bg-textWhite"}  transform scale-0 md:group-hover:scale-100 md:transition-transform md:duration-500 md:group-hover:duration-600 md:group-hover:ease-[var(--ease-in-out)] md:ease-[var(--ease-in-out)]`}
+                className={`absolute inset-0 rounded-full ${variant === "dark" ? "bg-dark" : "bg-textWhite"}  transform scale-0 md:group-hover:scale-100 md:transition-transform md:duration-400 md:group-hover:ease-[var(--ease-in-out)] md:ease-[var(--ease-in-out)]`}
               ></div>
               <Image
                 src={
@@ -188,7 +188,7 @@ const SocialLinks = ({ variant, className, needCopyBtn, isShareLinks = false, sh
                 width={20}
                 height={20}
                 alt={`${link.Icon} icon`}
-                className="md:group-hover:invert-100 md:transition-all md:duration-500 md:group-hover:duration-600 md:group-hover:ease-[var(--ease-in-out)] md:ease-[var(--ease-in-out)]"
+                className="md:group-hover:invert-100 md:transition-all md:duration-400 md:group-hover:ease-[var(--ease-in-out)] md:ease-[var(--ease-in-out)]"
               />
             </Link>
           </li>
@@ -208,12 +208,12 @@ const SocialLinks = ({ variant, className, needCopyBtn, isShareLinks = false, sh
             textClassName='text-textWhite'
           />
           <button
-            className={`relative group text-dark flex p-2.5 border border-beige  rounded-full md:transition-all md:duration-500 md:ease-[var(--ease-in-out)] md:hover:text-textWhite`}
+            className={`relative group text-dark flex p-2.5 border border-beige  rounded-full md:transition-all md:duration-400 md:ease-[var(--ease-in-out)] md:hover:text-textWhite`}
             type="button"
             onClick={handleCopyLink}
           >
             <div
-              className={`absolute inset-0 rounded-full bg-dark transform scale-0 md:group-hover:scale-100 md:transition-transform md:duration-500 md:group-hover:duration-600 md:group-hover:ease-[var(--ease-in-out)] md:ease-[var(--ease-in-out)]`}
+              className={`absolute inset-0 rounded-full bg-dark transform scale-0 md:group-hover:scale-100 md:transition-transform md:duration-400 md:group-hover:ease-[var(--ease-in-out)] md:ease-[var(--ease-in-out)]`}
             ></div>
             <svg
               className={`absolute inset-0 z-10 m-auto js-check-icon transition-opacity duration-400 ${

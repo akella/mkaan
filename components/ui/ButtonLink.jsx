@@ -56,7 +56,7 @@ const ButtonLink = ({
   };
 
   const content = (
-    <div className="relative flex gap-0 md:group-hover:gap-1 md:transition-all md:duration-500 md:group-hover:duration-400 items-center md:ease-[var(--ease-in-out)] md:group-hover:ease-[var(--ease-in)] capitalize">
+    <div className="relative flex gap-0 md:group-hover:gap-1 md:transition-all md:duration-400 md:group-hover:duration-400 items-center md:ease-[var(--ease-in-out)] md:group-hover:ease-[var(--ease-in)] capitalize">
       {words.map((word, index) => (
         <React.Fragment key={index}>
           <span>{word}</span>
@@ -64,7 +64,7 @@ const ButtonLink = ({
             <div
               className={`w-1 h-1 rounded-full ${
                 variant === "red" ? "bg-textWhite " : "bg-wine"
-              } transform scale-0 md:group-hover:scale-100 md:transition-all md:duration-500 md:group-hover:duration-400 md:ease-[var(--ease-in-out)] md:group-hover:ease-[var(--ease-in)]`}
+              } transform scale-0 md:group-hover:scale-100 md:transition-all md:duration-400 md:group-hover:duration-400 md:ease-[var(--ease-in-out)] md:group-hover:ease-[var(--ease-in)]`}
             ></div>
           )}
         </React.Fragment>
@@ -78,7 +78,7 @@ const ButtonLink = ({
         data-cursor-hidden="true"
         onPointerDown={handlePointerDown}
         onClick={handleClick}
-        className={`px-4 group relative py-2.5 rounded-full text-14 group md:transition-all md:duration-500 md:hover:duration-500 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)] ${
+        className={`px-4 group relative py-2.5 rounded-full text-14 group md:transition-all md:duration-400 md:hover:duration-400 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)] ${
           variant === "red"
             ? "bg-wine text-textWhite "
             : "bg-textWhite text-dark "
@@ -87,7 +87,7 @@ const ButtonLink = ({
       >
         {content}
         <div
-          className={`absolute inset-0 rounded-full ${variant === "red" ? "bg-hover-white/7" : "bg-hover/7"}  opacity-0 group-hover:opacity-100 md:transition-all md:duration-500 md:hover:duration-500 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)]`}
+          className={`absolute inset-0 rounded-full ${variant === "red" ? "bg-hover-white/7" : "bg-hover/7"}  opacity-0 group-hover:opacity-100 md:transition-all md:duration-400 md:hover:duration-400 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)]`}
         ></div>{" "}
       </NavLink>
     ) : (
@@ -96,7 +96,7 @@ const ButtonLink = ({
         data-cursor-hidden="true"
         onPointerDown={handlePointerDown}
         onClick={handleClick}
-        className={`px-4 py-2.5 relative group rounded-full text-14 group md:transition-all md:duration-500 md:hover:duration-500 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)] ${
+        className={`px-4 py-2.5 relative group rounded-full text-14 group md:transition-all md:duration-400 md:hover:duration-400 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)] ${
           variant === "red"
             ? "bg-wine text-textWhite "
             : "bg-textWhite text-dark "
@@ -105,7 +105,7 @@ const ButtonLink = ({
       >
         {content}
         <div
-          className={`absolute inset-0 rounded-full ${variant === "red" ? "bg-hover-white/7" : "bg-hover/7"}  opacity-0 group-hover:opacity-100 md:transition-all md:duration-500 md:hover:duration-500 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)]`}
+          className={`absolute inset-0 rounded-full ${variant === "red" ? "bg-hover-white/7" : "bg-hover/7"}  opacity-0 group-hover:opacity-100 md:transition-all md:duration-400 md:hover:duration-400 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)]`}
         ></div>
       </Link>
     );
@@ -116,14 +116,14 @@ const ButtonLink = ({
       data-cursor-hidden="true"
       onPointerDown={handlePointerDown}
       onClick={handleClick}
-      className={`relative group px-4 py-2.5 rounded-full text-14 group md:transition-all md:duration-500 md:hover:duration-500 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)] ${
+      className={`relative group px-4 py-2.5 rounded-full text-14 group md:transition-all md:duration-400 md:hover:duration-400 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)] ${
         variant === "red" ? "bg-wine text-textWhite " : "bg-textWhite text-dark"
       } ${className}`}
       {...props}
     >
       {content}
       <div
-        className={`absolute inset-0 rounded-full ${variant === "red" ? "bg-hover-white/7" : "bg-hover/7"}  opacity-0 group-hover:opacity-100 md:transition-all md:duration-500 md:hover:duration-500 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)]`}
+        className={`absolute inset-0 rounded-full ${variant === "red" ? "bg-hover-white/7" : "bg-hover/7"}  opacity-0 group-hover:opacity-100 md:transition-all md:duration-400 md:hover:duration-400 md:ease-[var(--ease-in-out)] md:hover:ease-[var(--ease-in)]`}
       ></div>
     </button>
   );
